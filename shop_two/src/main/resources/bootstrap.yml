@@ -7,22 +7,13 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8080
-        port: 8719
-    #      datasource:
-    #        order:
-    #          nacos:
-    #            server-addr: 106.75.209.173:8848
-    #            data-id: order-sentinel
-    #            group-id: DEFAULT_GROUP
-    #            data-type: json
-    #            rule-type: flow
-    #        shop:
-    #          nacos:
-    #            server-addr: 106.75.209.173:8848
-    #            data-id: shop-sentinel
-    #            group-id: DEFAULT_GROUP
-    #            data-type: json
-    #            rule-type: flow
+        datasource:
+          shop:
+            nacos:
+              server-addr: 106.75.209.173:8848
+              data-id: ${spring.application.name}-flow-rules
+              rule-type: flow
+              namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7
     nacos:
       config:
         namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7

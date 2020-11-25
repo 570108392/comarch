@@ -24,10 +24,10 @@ public class ShopController {
 
 
     @Reference
-    private ShopService shopService;
+    private OrderService orderService;
     @GetMapping("index")
-    public Shop index(){
+    public OrderMsg index(){
         log.info("系统访问shopTwo模块");
-        return shopService.getOne();
+        return orderService.getOne();
     }
 }

@@ -1,0 +1,36 @@
+server:
+  port: 80
+spring:
+  application:
+    name: gateway
+  cloud:
+    nacos:
+      config:
+        namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7
+        server-addr: 106.75.209.173:8848
+        prefix: ${spring.application.name}
+        file-extension: yml
+#        shared-dataids: application.yml
+#        refreshable-dataids: application.yml
+      discovery:
+        server-addr: 106.75.209.173:8848
+        namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      routes:
+        # 履约保 PC 门户网站
+        - id: order
+          uri: lb://order
+          predicates:
+            - Path=/order/**
+          filters:
+            - StripPrefix= 1 #后期考虑全局配置
+        - id: shop
+          uri: lb://shop
+          predicates:
+            - Path=/shop/**
+          filters:
+            - StripPrefix= 1 #后期考虑全局配置
