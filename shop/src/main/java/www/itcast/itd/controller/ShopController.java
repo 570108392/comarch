@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import www.itcast.itd.api.OrderService;
+import www.itcast.itd.api.ShopService;
 import www.itcast.itd.domain.OrderMsg;
+import www.itcast.itd.domain.Shop;
 
 /**
  * @createUser: 张鹏
@@ -15,17 +17,17 @@ import www.itcast.itd.domain.OrderMsg;
  * @descripton:
  **/
 @RestController
-@RequestMapping("order")
+@RequestMapping("shop")
 @RefreshScope
 @Slf4j
-public class OrderController {
+public class ShopController {
 
 
     @Reference
-    private OrderService orderService;
+    private ShopService shopService;
     @GetMapping("index")
-    public OrderMsg index(){
-        log.info("系统访问order模块");
-        return orderService.getOne();
+    public Shop index(){
+        log.info("系统访问shop模块");
+        return shopService.getOne();
     }
 }

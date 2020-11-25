@@ -1,5 +1,6 @@
 package www.itcast.itd.controller;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import www.itcast.itd.domain.Shop;
 @RestController
 @RequestMapping("shop")
 @RefreshScope
+@Slf4j
 public class ShopController {
 
 
@@ -25,6 +27,7 @@ public class ShopController {
     private ShopService shopService;
     @GetMapping("index")
     public Shop index(){
+        log.info("系统访问shopTwo模块");
         return shopService.getOne();
     }
 }

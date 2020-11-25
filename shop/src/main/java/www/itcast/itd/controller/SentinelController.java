@@ -24,7 +24,7 @@ public class SentinelController {
     @GetMapping("test5")
     @SentinelResource(value = "test5",blockHandler = "deal_test5")
     public String test5(@RequestParam(value = "p1",required = false) String p1){
-        log.info("系统访问shopTwo模块");
+        log.info("系统访问shop模块");
         return "test5";
     }
     public String deal_test5(String p1, BlockException blockException){

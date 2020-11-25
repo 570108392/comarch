@@ -1,0 +1,59 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: order
+  cloud:
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+    #      datasource:
+    #        order:
+    #          nacos:
+    #            server-addr: 106.75.209.173:8848
+    #            data-id: order-sentinel
+    #            group-id: DEFAULT_GROUP
+    #            data-type: json
+    #            rule-type: flow
+    #        shop:
+    #          nacos:
+    #            server-addr: 106.75.209.173:8848
+    #            data-id: shop-sentinel
+    #            group-id: DEFAULT_GROUP
+    #            data-type: json
+    #            rule-type: flow
+    nacos:
+      config:
+        namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7
+        server-addr: 106.75.209.173:8848
+        prefix: ${spring.application.name}
+        file-extension: yml
+        # 老版本shared-dataids 在这里已经被废弃
+        shared-dataids: application.yml
+        refreshable-dataids: application.yml
+      #        shared-configs[0]:
+#          # data-id要求必须有后缀名（这个要求很正常，但是配合配置中心一点也不好用）
+#          data-id: application.yml
+#          group: DEFAULT_GROUP
+#          refresh: true
+      discovery:
+        server-addr: 106.75.209.173:8848
+        namespace: 360cdb6d-10bd-4fc1-931a-b4d767d5f1b7
+
+dubbo:
+  scan:
+    base-packages: www.itcast.itd
+  protocols:
+    dubbo:
+      name: dubbo
+      port: -1
+  registry:
+    address: spring-cloud://106.75.209.173
+  application:
+    qos:
+      enable: false
+  cloud:
+    subscribed-services: shop
+  consumer:
+    check: false
